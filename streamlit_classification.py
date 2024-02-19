@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import sklearn
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
