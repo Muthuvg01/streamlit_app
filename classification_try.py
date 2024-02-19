@@ -74,7 +74,7 @@ rfc.fit(X, y)
 st.subheader("Choose an option")
 option = st.radio(
     "Choose an option ",
-    ("Input value")
+    ("Choose file","Input value")
 )
 
 
