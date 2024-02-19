@@ -18,7 +18,7 @@ def read_csv(file):
 def display_head(dataframe, n_rows = 5):
   return dataframe.head(n_rows)
 
-file = 'C:\\Users\\muthu.g.lv\\Documents\\Case Study\\Dataset\\Classification.csv'
+file = st.file_uploader("Upload CSV file", type=["csv"])
 df = read_csv(file)
 def get_numerical_column(dataframe):
   return dataframe.columns[dataframe.dtypes != "object"]
