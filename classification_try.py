@@ -74,83 +74,8 @@ rfc.fit(X, y)
 st.subheader("Choose an option")
 option = st.radio(
     "Choose an option ",
-    ("Upload file", "Input value")
+    ("Input value")
 )
-
-if option == "Upload file":
-    
-    st.subheader("Upload file")
-    uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
-    #uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
-
-        # Read CSV file
-    df = pd.read_csv(uploaded_file)
-    df_copy=df.copy()
-        # Display original data
-    st.subheader("Original Data")
-    st.write(df.head(5))
-    df = df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights',
-        'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space',
-        'room_type_reserved', 'lead_time', 'arrival_month',
-        'market_segment_type', 'repeated_guest',
-        'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled','avg_price_per_room', 'no_of_special_requests']]      
-
-        #getting numerical columns
-    def get_numerical_column(dataframe):
-            return dataframe.columns[dataframe.dtypes != "object"]
-
-    numerical_columns = get_numerical_column(df)
-    
-    def get_categorical_column(dataframe):
-            return dataframe.columns[dataframe.dtypes == "object"]
-
-    categorical_columns = get_categorical_column(df)
-
-    def missing_check(dataframe):
-            return dataframe.isnull().sum().any()
-    missing_check(df)
-
-    def fill_missing_values_mean(columns_to_fill, dataframe):
-            for col_name in columns_to_fill:
-                mean = dataframe[col_name].mean()
-                dataframe[col_name].fillna(mean,inplace=True)
-
-    
-    def duplicate_check(df):
-            has_duplicates = df.duplicated().sum()
-            #print("Total duplicates present : ", has_duplicates)
-            if has_duplicates!=0:
-                df = df.drop_duplicates()
-            else:
-                pass   
-    duplicate_check(df) 
-    
-
-   
-    continue_button =st.button("Proceed")
-    if continue_button:
-            columns_to_encode = categorical_columns
-            def encode_column(df, column):
-                for i in column:
-                    label = LabelEncoder()
-                    df[i] = label.fit_transform(df[i])
-            
-            encode_column(df,columns_to_encode)
-                #########################
-            st.subheader("Predicted Data")
-            #st.write(df.head(5))
-            y_pred = rfc.predict(df)
-            # Using DataFrame.insert() to add a column
-            #df.insert("Predicted value", y_pred, True)
-
-            df2 = df_copy.assign(Predict=y_pred)
-            df2['Predicted'] = df2['Predict'].apply(lambda x: 'Canceled' if x == 0 else 'Not_Canceled')
-            df2 = df2.drop(['Predict'], axis = 1)
-
-            st.write(df2.head(5))
-
-import streamlit as st
-
 
 
 if option == "Input value":
