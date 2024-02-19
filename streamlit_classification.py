@@ -1,12 +1,12 @@
 import pandas as pd
 import streamlit as st
-from sklearn.preprocessing import LabelEncoder
+from scikit-learn.preprocessing import LabelEncoder
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.feature_selection import SelectFromModel
-from sklearn.preprocessing import MinMaxScaler
+from scikit-learn.preprocessing import MinMaxScaler
+from scikit-learn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from scikit-learn.model_selection import train_test_split
+from scikit-learn.feature_selection import SelectFromModel
+from scikit-learn.preprocessing import MinMaxScaler
 from imblearn.over_sampling import SMOTE
 
 st.title("Classifying Bookings")
