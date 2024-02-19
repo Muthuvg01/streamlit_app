@@ -82,7 +82,7 @@ if option == "Upload file":
     st.subheader("Upload file")
     uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
     #uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
-    if uploaded_file is not None:
+    if uploaded_file:
         # Read CSV file
         df = pd.read_csv(uploaded_file)
         df_copy=df.copy()
