@@ -18,7 +18,7 @@ def read_csv(file):
 def display_head(dataframe, n_rows = 5):
   return dataframe.head(n_rows)
 
-file = st.file_uploader("Upload CSV file", type=["csv"])
+file = 'C:\\Users\\muthu.g.lv\\Documents\\Case Study\\Dataset\\Classification.csv'
 df = read_csv(file)
 def get_numerical_column(dataframe):
   return dataframe.columns[dataframe.dtypes != "object"]
@@ -82,53 +82,53 @@ if option == "Upload file":
     st.subheader("Upload file")
     uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
     #uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
-    if uploaded_file:
+
         # Read CSV file
-        df = pd.read_csv(uploaded_file)
-        df_copy=df.copy()
+    df = pd.read_csv(uploaded_file)
+    df_copy=df.copy()
         # Display original data
-        st.subheader("Original Data")
-        st.write(df.head(5))
-        df = df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights',
+    st.subheader("Original Data")
+    st.write(df.head(5))
+    df = df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights',
         'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space',
         'room_type_reserved', 'lead_time', 'arrival_month',
         'market_segment_type', 'repeated_guest',
         'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled','avg_price_per_room', 'no_of_special_requests']]      
 
         #getting numerical columns
-        def get_numerical_column(dataframe):
+    def get_numerical_column(dataframe):
             return dataframe.columns[dataframe.dtypes != "object"]
 
-        numerical_columns = get_numerical_column(df)
+    numerical_columns = get_numerical_column(df)
     
-        def get_categorical_column(dataframe):
+    def get_categorical_column(dataframe):
             return dataframe.columns[dataframe.dtypes == "object"]
 
-        categorical_columns = get_categorical_column(df)
+    categorical_columns = get_categorical_column(df)
 
-        def missing_check(dataframe):
+    def missing_check(dataframe):
             return dataframe.isnull().sum().any()
-        missing_check(df)
+    missing_check(df)
 
-        def fill_missing_values_mean(columns_to_fill, dataframe):
+    def fill_missing_values_mean(columns_to_fill, dataframe):
             for col_name in columns_to_fill:
                 mean = dataframe[col_name].mean()
                 dataframe[col_name].fillna(mean,inplace=True)
 
     
-        def duplicate_check(df):
+    def duplicate_check(df):
             has_duplicates = df.duplicated().sum()
             #print("Total duplicates present : ", has_duplicates)
             if has_duplicates!=0:
                 df = df.drop_duplicates()
             else:
                 pass   
-        duplicate_check(df) 
+    duplicate_check(df) 
     
 
    
-        continue_button =st.button("Proceed")
-        if continue_button:
+    continue_button =st.button("Proceed")
+    if continue_button:
             columns_to_encode = categorical_columns
             def encode_column(df, column):
                 for i in column:
