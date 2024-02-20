@@ -4,3 +4,4 @@ imblearn
 matplotlib
 numpy
 streamlit
+pickle=4.0
