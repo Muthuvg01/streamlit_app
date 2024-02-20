@@ -4,6 +4,7 @@ import streamlit as st
 #import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
+import pickle
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
@@ -11,65 +12,11 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.preprocessing import MinMaxScaler
 from imblearn.over_sampling import SMOTE
 
+with open('Random_Forest_Classifier.pkl', 'rb') as file:
+    rfc = pickle.load(file)
+
 st.title("Classifying Bookings")
-def read_csv(file):
-  return pd.read_csv(file)
 
-def display_head(dataframe, n_rows = 5):
-  return dataframe.head(n_rows)
-
-file = st.file_uploader("Upload CSV file", type=["csv"])
-df = read_csv(file)
-def get_numerical_column(dataframe):
-  return dataframe.columns[dataframe.dtypes != "object"]
-
-numerical_columns = get_numerical_column(df)
-def get_categorical_column(dataframe):
-  return dataframe.columns[dataframe.dtypes == "object"]
-
-categorical_columns = get_categorical_column(df)
-
-# Remove duplication
-def duplicate_check(df):
-    has_duplicates = df.duplicated().sum()
-    #print("Total duplicates present : ", has_duplicates)
-    if has_duplicates!=0:
-         df = df.drop_duplicates()
-    else:
-         pass   
-duplicate_check(df) 
-
-# Encoding col
-def encode_column(df, column):
-  label = LabelEncoder()
-  df[column] = label.fit_transform(df[column])
-
-columns_to_encode = ['type_of_meal_plan', 'room_type_reserved',
-       'market_segment_type', 'target']
-
-for column in columns_to_encode:
-  encode_column(df,column)
-
-df = df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights','no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space',
-       'room_type_reserved', 'lead_time', 'arrival_month',
-       'market_segment_type', 'repeated_guest',
-       'no_of_previous_cancellations', 'no_of_previous_bookings_not_canceled',
-       'avg_price_per_room', 'no_of_special_requests', 'target']]
-
-
-cols=df.columns
-ms=MinMaxScaler()
-df=ms.fit_transform(df)
-
-df=pd.DataFrame(df,columns=cols)
-y = df['target']
-X = df.drop(['target'], axis = 1)
-
-smote = SMOTE()
-X,y = smote.fit_resample(X,y)
-
-rfc = RandomForestClassifier(max_depth= None, min_samples_leaf= 1, min_samples_split= 5, n_estimators= 200)
-rfc.fit(X, y)
 
 st.subheader("Choose an option")
 option = st.radio(
@@ -154,4 +101,7 @@ if option == "Input value":
             st.write('Canceled')
         elif prediction == 1:
             st.write('Non_Canceled')
+
+if __name__ == '__main__':
+    main()
 
