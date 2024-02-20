@@ -13,7 +13,7 @@ import pickle
 
 st.title("Spend Prediction")
 
-with open("C:\\Users\\muthu.g.lv\\Documents\\Case Study\\Code\\linear.pkl", 'rb') as file:
+with open("linear.pkl", 'rb') as file:
     model = pickle.load(file)
 
 
