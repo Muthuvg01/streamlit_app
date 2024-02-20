@@ -12,7 +12,7 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.preprocessing import MinMaxScaler
 from imblearn.over_sampling import SMOTE
 
-with open('Random_Forest_Classifier.pkl', 'rb') as file:
+with open('knn.pkl', 'rb') as file:
     rfc = pickle.load(file)
 
 st.title("Classifying Bookings")
