@@ -13,7 +13,7 @@ from imblearn.over_sampling import SMOTE
 import pickle
 
 st.title("Classifying Bookings")
-with open("C:\\Users\\muthu.g.lv\\Documents\\Case Study\\Code\\knn.pkl", 'rb') as file:
+with open("knn.pkl", 'rb') as file:
     rfc = pickle.load(file)
 
 st.subheader("Choose an option")
