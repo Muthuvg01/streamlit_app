@@ -12,9 +12,8 @@ import pickle
 
 col11, col21, col31 = st.columns(3)
 with col21:
-    st.title("Spend")
-with col31:
-    st.title("Prediction")
+    st.title("Spend Prediction")
+
 
 with open("linear.pkl", 'rb') as file:
     model = pickle.load(file)
