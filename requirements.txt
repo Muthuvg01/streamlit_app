@@ -4,4 +4,4 @@ imblearn
 matplotlib
 numpy
 streamlit
-pickle
+
