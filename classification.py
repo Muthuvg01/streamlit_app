@@ -12,7 +12,7 @@ from sklearn.preprocessing import MinMaxScaler
 from imblearn.over_sampling import SMOTE
 import pickle
 
-st.title("Classifying Bookings")
+st.title("Bookings classification")
 with open("knn.pkl", 'rb') as file:
     rfc = pickle.load(file)
 
