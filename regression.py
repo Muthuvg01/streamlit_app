@@ -10,9 +10,11 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.preprocessing import MinMaxScaler
 import pickle
 
-col11, col21 = st.columns(2)
+col11, col21, col31 = st.columns(3)
 with col21:
-    st.title("Spend Prediction")
+    st.title("Spend")
+with col31:
+    st.title("Prediction")
 
 with open("linear.pkl", 'rb') as file:
     model = pickle.load(file)
