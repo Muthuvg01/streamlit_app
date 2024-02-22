@@ -10,9 +10,8 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.preprocessing import MinMaxScaler
 import pickle
 
-col11, col21, col31 = st.columns(3)
-with col21:
-    st.title("Spend Prediction")
+st.markdown("<h2 style='text-align: center; color: black;'> Spend Prediction </h2>", unsafe_allow_html=True)
+
 
 
 with open("linear.pkl", 'rb') as file:
