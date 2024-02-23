@@ -33,7 +33,7 @@ if option == "Upload file":
         df = pd.read_csv(uploaded_file)
         df_copy=df.copy()
         # Display original data
-        st.subheader("Original Data")
+        st.subheader("Original Data - Preview")
         st.write(df.head(5))
         df = df[['no_of_adults', 'no_of_children', 'no_of_weekend_nights',
         'no_of_week_nights', 'type_of_meal_plan', 'required_car_parking_space',
@@ -83,7 +83,7 @@ if option == "Upload file":
             
             encode_column(df,columns_to_encode)
                 #########################
-            st.subheader("Predicted Data")
+            st.subheader("Predicted Data - Preview")
             #st.write(df.head(5))
             y_pred = rfc.predict(df)
             # Using DataFrame.insert() to add a column
@@ -94,6 +94,15 @@ if option == "Upload file":
             df2 = df2.drop(['Predict'], axis = 1)
 
             st.write(df2.head(5))
+
+            def convert_df(df):
+                return df.to_csv().encode('utf-8')
+
+
+            csv = convert_df(df2)
+
+
+            st.download_button('Download as CSV', csv, 'Classification_Predicted.csv', 'text/csv')
 
 import streamlit as st
 
