@@ -102,7 +102,7 @@ if option == "Upload file":
             csv = convert_df(df2)
 
 
-            st.download_button('Download as CSV', csv, 'Classification_Predicted.csv', 'text/csv')
+            st.download_button('Download as CSV', csv, 'Bookings_Predicted.csv', 'text/csv')
 
 import streamlit as st
 
