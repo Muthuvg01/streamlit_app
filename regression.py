@@ -34,7 +34,7 @@ if option == "Upload file":
         df = pd.read_csv(uploaded_file)
         df_copy=df.copy()
         # Display original data
-        st.subheader("Original Data")
+        st.subheader("Original Data - Preview")
         st.write(df.head(5))
         df = df[[ 'tier', 'marital_status', 'leisure_stays',
        'business_stays', 'total_stays', 'length_of_stay', 'total_luxury_stays',
@@ -101,7 +101,7 @@ if option == "Upload file":
             
             
                 #########################
-            st.subheader("Predicted Data")
+            st.subheader("Predicted Data - Preview")
             #st.write(df.head(5))
             y_pred = model.predict(df)
             # Using DataFrame.insert() to add a column
@@ -112,6 +112,14 @@ if option == "Upload file":
             #df2 = df2.drop([''], axis = 1)
 
             st.write(df2.head(5))
+            def convert_df(df):
+                return df.to_csv().encode('utf-8')
+
+
+            csv = convert_df(df2)
+
+
+            st.download_button('Download as CSV', csv, 'Spend_Predicted.csv', 'text/csv')
 
 if option == "Input value":
     st.subheader("Provide input values")
