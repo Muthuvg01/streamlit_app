@@ -20,7 +20,7 @@ with open("knn.pkl", 'rb') as file:
 st.subheader("Choose an option")
 option = st.radio(
     "Choose an option ",
-    ("Upload file", "Input value")
+    ("Upload_file", "Input value")
 )
 
 if option == "Upload file":
