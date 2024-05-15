@@ -151,11 +151,11 @@ if option == "Input value":
     if input2=="b":
         input2=0
     elif input2=="d":
-        input6=1
+        input2=1
     elif input2=="g":
-        input6=2
+        input2=2
     elif input2=="s":
-        input6=3
+        input2=3
 
     if input3=="D":
         input3=0
